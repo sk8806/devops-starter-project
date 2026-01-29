@@ -1,0 +1,19 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run health check
+        run: bash scripts/health_check.sh
+
+      - name: Verify app file
+        run: test -f app/app.py
